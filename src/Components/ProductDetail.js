@@ -2,7 +2,7 @@ import { Divider, Grid, Rating } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { useMediaQuery } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
@@ -17,6 +17,7 @@ const ProductDetail = () => {
 
   const { items, setItems } = useContext(CartContext);
   const [isItem, setIsItem] = useState(null);
+  const isSmallScreen = useMediaQuery("(max-width:800px)");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -109,7 +110,7 @@ const ProductDetail = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "100%",
+            height: !isSmallScreen ? "100%": "60%",
           }}
         >
           {/* <img

@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import CartContext from "../Context/context";
+import { useMediaQuery } from "@mui/material";
 
 const Navbar = () => {
-  const {items} = useContext(CartContext)
+  const { items } = useContext(CartContext);
+  const isSmallScreen = useMediaQuery("(max-width:690px)");
   return (
     <nav
       style={{
@@ -28,41 +30,43 @@ const Navbar = () => {
           gap: "25px",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            gap: "5px",
-            alignItems: "center",
-            backgroundColor: "rgba(255, 255, 255, 0.7)",
-            backdropFilter: "blur(5px)",
-            borderRadius: "8px",
-            padding: "0px 10px",
-          }}
-        >
-          <p
+        {!isSmallScreen && (
+          <div
             style={{
-              fontWeight: "400",
-              fontSize: "13px",
-              color: "#000000",
-              cursor: "pointer",
+              display: "flex",
+              gap: "5px",
+              alignItems: "center",
+              backgroundColor: "rgba(255, 255, 255, 0.7)",
+              backdropFilter: "blur(5px)",
+              borderRadius: "8px",
+              padding: "0px 10px",
             }}
           >
-            SEARCH -
-          </p>
-          <input
-            style={{
-              outline: "none",
-              border: "0",
-              padding: "5px",
-              borderRadius: "8px",
-              cursor: "pointer",
-              boxShadow: "10px 15px 40px rgba(0, 0, 0, 0.2)",
-              backgroundColor: "rgba(255, 255, 255, 0.3)",
-              backdropFilter: "blur(5px)",
-              // borderRadius: "8px",
-            }}
-          />
-        </div>
+            <p
+              style={{
+                fontWeight: "400",
+                fontSize: "13px",
+                color: "#000000",
+                cursor: "pointer",
+              }}
+            >
+              SEARCH -
+            </p>
+            <input
+              style={{
+                outline: "none",
+                border: "0",
+                padding: "5px",
+                borderRadius: "8px",
+                cursor: "pointer",
+                boxShadow: "10px 15px 40px rgba(0, 0, 0, 0.2)",
+                backgroundColor: "rgba(255, 255, 255, 0.3)",
+                backdropFilter: "blur(5px)",
+                // borderRadius: "8px",
+              }}
+            />
+          </div>
+        )}
         <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
           <NavLink
             to="/"
